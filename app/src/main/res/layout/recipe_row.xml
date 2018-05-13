@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <FrameLayout
+        android:id="@+id/recipe_background"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bkg_recipe_row"/>
+
+    <com.navrug.aumarche.views.AUTextView
+        android:id="@+id/recipe_name"
+        android:layout_alignTop="@id/recipe_background"
+        style="@style/Recipe.Row" />
+
+    <com.navrug.aumarche.views.AUTextView
+        android:id="@+id/recipe_day"
+        android:layout_below="@id/recipe_name"
+        style="@style/Recipe.Row" />
+
+</RelativeLayout>
