@@ -17,8 +17,6 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = _recipes[position]
 
-        Log.d("echo", "recipe: " + recipe)
-
         holder.name.text = recipe._name
         holder.day.text = String.format("%s %s", holder.itemView.context.getString(recipe.getDay()._value), holder.itemView.context.getString(recipe.getMeal()._value))
     }
