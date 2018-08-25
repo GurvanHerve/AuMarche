@@ -1,7 +1,6 @@
 package com.navrug.aumarche.recipes.list
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,7 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
 }
 
 class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val name = itemView.findViewById<AUTextView>(R.id.recipe_name)
-    val day = itemView.findViewById<AUTextView>(R.id.recipe_day)
+    val name = itemView.findViewById<AUTextView>(R.id.recipe_name)!!
+    val day = itemView.findViewById<AUTextView>(R.id.recipe_day)!!
 
 }

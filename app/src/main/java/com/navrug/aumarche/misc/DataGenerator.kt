@@ -1,11 +1,9 @@
 package com.navrug.aumarche.misc
 
-import android.util.Log
 import com.navrug.aumarche.model.*
 import com.navrug.aumarche.model.Unit
 import io.realm.Realm
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DataGenerator {
 
@@ -22,7 +20,7 @@ class DataGenerator {
     }
 
     private fun generateRecipe() {
-        Realm.getDefaultInstance().executeTransactionAsync({
+        Realm.getDefaultInstance().executeTransactionAsync {
             val recipe = it.createObject(Recipe::class.java)
 
             for (i in 0..rand.nextInt(10)) recipe._components.add(generateComponent(it))
@@ -30,7 +28,7 @@ class DataGenerator {
             recipe._name = LOREM
             recipe._day = dayPicker().toString()
             recipe._meal = mealPicker().toString()
-        })
+        }
     }
 
     private fun generateComponent(realm: Realm): Component {
