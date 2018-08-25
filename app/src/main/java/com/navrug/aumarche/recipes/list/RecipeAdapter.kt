@@ -8,7 +8,11 @@ import com.navrug.aumarche.R
 import com.navrug.aumarche.model.Recipe
 import com.navrug.aumarche.views.AUTextView
 
-class RecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
+class RecipeAdapter(private val listener: RecipeListener) : RecyclerView.Adapter<RecipeViewHolder>() {
+    interface RecipeListener {
+        fun onRecipePressed()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder = RecipeViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recipe_row, parent, false))
 
     override fun getItemCount(): Int = _recipes.size
@@ -18,6 +22,8 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
 
         holder.name.text = recipe._name
         holder.day.text = String.format("%s %s", holder.itemView.context.getString(recipe.getDay()._value), holder.itemView.context.getString(recipe.getMeal()._value))
+
+        holder.itemView.setOnClickListener { view -> listener.onRecipePressed() }
     }
 
     private val _recipes = ArrayList<Recipe>()
@@ -31,5 +37,4 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
 class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val name = itemView.findViewById<AUTextView>(R.id.recipe_name)!!
     val day = itemView.findViewById<AUTextView>(R.id.recipe_day)!!
-
 }
