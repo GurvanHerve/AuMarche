@@ -14,17 +14,13 @@ abstract class BaseFragment<P: BasePresenter<*>> : Fragment() {
 
     abstract fun layoutId(): Int
 
-    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialize()
+        presenter = presenter()
     }
 
-    private lateinit var presenter: P
+    protected lateinit var presenter: P
     abstract fun presenter(): P
-
-    open fun initialize() {
-        presenter = this.presenter()
-    }
 
     override fun onPause() {
         super.onPause()
