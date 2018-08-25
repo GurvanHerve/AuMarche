@@ -8,8 +8,7 @@ import io.realm.Realm
 class RecipeListPresenter(private val view: RecipeListView) : BasePresenter<RecipeListView>(view), RecipeAdapter.RecipeListener {
     private lateinit var adapter: RecipeAdapter
 
-    override fun initialize() {
-        super.initialize()
+    fun initialize() {
 
         generateData()
 

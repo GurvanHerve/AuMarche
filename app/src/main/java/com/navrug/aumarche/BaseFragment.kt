@@ -24,7 +24,6 @@ abstract class BaseFragment<P: BasePresenter<*>> : Fragment() {
 
     open fun initialize() {
         presenter = this.presenter()
-        presenter.initialize()
     }
 
     override fun onPause() {
