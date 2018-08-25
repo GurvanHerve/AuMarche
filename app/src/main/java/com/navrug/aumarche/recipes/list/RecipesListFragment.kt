@@ -1,9 +1,11 @@
 package com.navrug.aumarche.recipes.list
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.navrug.aumarche.BaseFragment
 import com.navrug.aumarche.R
-import kotlinx.android.synthetic.main.fragment_recipe_list.*
 
 class RecipesListFragment : BaseFragment<RecipeListPresenter>(), RecipeListView {
     interface Callback {
@@ -18,13 +20,18 @@ class RecipesListFragment : BaseFragment<RecipeListPresenter>(), RecipeListView 
         return RecipeListPresenter(this)
     }
 
-    override fun initialize() {
-        super.initialize()
-        recipes_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    private lateinit var recipesListView: RecyclerView
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        presenter.initialize()
+        recipesListView = view.findViewById(R.id.recipes_list)
+        recipesListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun setAdapter(adapter: RecipeAdapter) {
-        recipes_list.adapter = adapter
+        recipesListView.adapter = adapter
     }
 
     override fun showRecipe() {
