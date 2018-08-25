@@ -4,10 +4,6 @@ abstract class BasePresenter<V : BaseView>(view: V) {
 
     private var isPause = true
 
-    open fun initialize() {
-
-    }
-
     open fun resume() {
         isPause = false
     }
