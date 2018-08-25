@@ -3,16 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recipes_list"
+    <FrameLayout
+        android:id="@+id/recipes_list_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="48dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:clipToPadding="false"/>
+        android:layout_height="match_parent"/>
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
