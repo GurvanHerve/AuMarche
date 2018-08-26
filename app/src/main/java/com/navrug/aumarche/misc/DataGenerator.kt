@@ -1,6 +1,5 @@
 package com.navrug.aumarche.misc
 
-import android.util.Log
 import com.navrug.aumarche.model.*
 import com.navrug.aumarche.model.Unit
 import io.realm.Realm
@@ -22,20 +21,19 @@ class DataGenerator {
     }
 
     private fun generateRecipe() {
-        Realm.getDefaultInstance().executeTransactionAsync({
-            val recipe = it.createObject(Recipe::class.java)
+        Realm.getDefaultInstance().executeTransactionAsync{
+            val componentSize = rand.nextInt(10)
+            val components = ArrayList<Component>(componentSize)
 
-            for (i in 0..rand.nextInt(10)) recipe._components.add(generateComponent(it))
+            for (i in 0..componentSize) components.add(generateComponent(it))
 
-            recipe._name = LOREM
-            recipe._day = dayPicker().toString()
-            recipe._meal = mealPicker().toString()
-        })
+            Recipe.create(LOREM, dayPicker(), mealPicker(), components, it)
+        }
     }
 
     private fun generateComponent(realm: Realm): Component {
-        val component = realm.createObject(Component::class.java)
-        component._ingredient = generateIngredient(realm)
+        val component = Component()
+        component._ingredient = ingredientPicker(realm)
         component._quantity = rand.nextInt(200)
         if (rand.nextBoolean()) {
             val unit = Unit.values()
@@ -44,10 +42,9 @@ class DataGenerator {
         return component
     }
 
-    private fun generateIngredient(realm: Realm): Ingredient{
-        val ingredient = realm.createObject(Ingredient::class.java)
-        ingredient._name = LOREM
-        return ingredient
+    private fun ingredientPicker(realm: Realm): Ingredient {
+        val ingredients = realm.where(Ingredient::class.java).findAll()
+        return ingredients[rand.nextInt(ingredients.size)]!!
     }
 
     private fun mealPicker(): Meal {
