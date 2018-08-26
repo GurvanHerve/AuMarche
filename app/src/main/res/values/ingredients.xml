@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ingredients">
+        <item>@string/carrots</item>
+        <item>@string/peas</item>
+        <item>@string/green_peas</item>
+        <item>@string/beef</item>
+        <item>@string/porc</item>
+        <item>@string/chicken</item>
+    </string-array>
+
+    <string name="carrots">Carrots</string>
+    <string name="peas">Peas</string>
+    <string name="green_peas">Green Peas</string>
+    <string name="beef">Beef</string>
+    <string name="porc">Porc</string>
+    <string name="chicken">Chicken</string>
+</resources>
