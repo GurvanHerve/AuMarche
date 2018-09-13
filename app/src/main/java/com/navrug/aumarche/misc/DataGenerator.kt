@@ -21,7 +21,7 @@ class DataGenerator {
     }
 
     private fun generateRecipe() {
-        Realm.getDefaultInstance().executeTransactionAsync{
+        Realm.getDefaultInstance().executeTransaction{
             val componentSize = rand.nextInt(10)
             val components = ArrayList<Component>(componentSize)
 
