@@ -1,12 +1,14 @@
 package com.navrug.aumarche
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.navrug.aumarche.recipes.list.RecipesListFragment
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        showFragment(R.id.recipes_list_container, RecipesListFragment())
     }
 }
