@@ -6,10 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.navrug.aumarche.BaseFragment
 import com.navrug.aumarche.R
+import com.navrug.aumarche.model.Recipe
 
 class RecipesListFragment : BaseFragment<RecipeListPresenter>(), RecipeListView {
     interface Callback {
-        fun showRecipe()
+        fun showRecipeDetail(recipe: Recipe)
     }
 
     override fun layoutId(): Int {
@@ -25,17 +26,20 @@ class RecipesListFragment : BaseFragment<RecipeListPresenter>(), RecipeListView 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.initialize()
         recipesListView = view.findViewById(R.id.recipes_list)
         recipesListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        presenter.initialize()
     }
 
     override fun setAdapter(adapter: RecipeAdapter) {
         recipesListView.adapter = adapter
     }
 
-    override fun showRecipe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showRecipe(recipe: Recipe) {
+        callBack()?.showRecipeDetail(recipe)
     }
+
+    private fun callBack(): Callback? = if (activity is Callback) activity as Callback else null
 }
 
